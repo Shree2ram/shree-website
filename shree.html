@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shree1.com.np - Ocean World</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(180deg, #0077be, #004080);
+            overflow: hidden;
+            position: relative;
+        }
+        h1 {
+            font-size: 3rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            position: relative;
+            animation: bounce 1.5s infinite;
+            z-index: 2;
+        }
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        .bubble {
+            position: absolute;
+            background: rgba(173, 216, 230, 0.6);
+            border-radius: 50%;
+            opacity: 0.8;
+            pointer-events: none;
+            animation: floatUp 3s forwards ease-in-out;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        @keyframes floatUp {
+            0% {
+                opacity: 1;
+                transform: scale(0.5);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-50px) scale(1.5);
+            }
+        }
+        .coral {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, #ff9966, transparent);
+            animation: wave 4s infinite alternate;
+        }
+        @keyframes wave {
+            0% { transform: translateY(5px); }
+            100% { transform: translateY(-5px); }
+        }
+        .ripple {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: rippleEffect 0.6s linear;
+            pointer-events: none;
+        }
+        @keyframes rippleEffect {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Hell O There</h1>
+    <div class="coral"></div>
+    <script>
+        document.addEventListener('mousemove', (e) => {
+            console.log("Mouse moved at:", e.clientX, e.clientY);
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble');
+            document.body.appendChild(bubble);
+            
+            const size = Math.random() * 20 + 10 + 'px';
+            bubble.style.width = size;
+            bubble.style.height = size;
+            bubble.style.left = e.clientX + 'px';
+            bubble.style.top = e.clientY + 'px';
+            
+            setTimeout(() => {
+                console.log("Bubble removed.");
+                bubble.remove();
+            }, 3000);
+        });
+        
+        document.addEventListener('click', (e) => {
+            console.log("Click detected at:", e.clientX, e.clientY);
+            const ripple = document.createElement('div');
+            ripple.classList.add('ripple');
+            document.body.appendChild(ripple);
+            
+            const size = 100 + 'px';
+            ripple.style.width = size;
+            ripple.style.height = size;
+            ripple.style.left = e.clientX - 50 + 'px';
+            ripple.style.top = e.clientY - 50 + 'px';
+            
+            setTimeout(() => {
+                console.log("Ripple removed.");
+                ripple.remove();
+            }, 600);
+        });
+    </script>
+</body>
+</html>
